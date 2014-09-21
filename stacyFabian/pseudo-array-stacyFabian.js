@@ -10,11 +10,11 @@ array.pop = function() {
 	return --this.length;
 }
 
-array.join = function(array) { //returns a string
+array.join = function(connector) {
 	var fullString = "";
-	for (var key in array){
+	for (var key in array) {
 		if (key<this.length) {
-			fullString = (fullString+" "+array[key]);
+			fullString = (fullString+connector+array[key]);
 		}
 	}
 	return fullString;
