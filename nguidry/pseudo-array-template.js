@@ -11,18 +11,19 @@
 
 var array = {length:0};
 
-array.pop = function() { //changes array, returns ??
-	//remove last element from array
-	//return the value of the removed element
+array.pop = function() { //changes array, returns popped value
+	//set variable to property value
+	var poppedVal = "";
+	//remove last element from object - no idea!
+	//return the variable of the removed element
+	return poppedVal;
 }
 
 // done!
-array.push = function(newValue) { //changes array, returns a number
+array.push = function(newValue) { 
 	this.length = this.length + 1;
 	this [this.length] = "newValue";
 	return this.length;
-	//adds one or more elements to the end of an array (with numeric indices)
-	//returns new length of array
 }
 
 
@@ -39,4 +40,20 @@ array.join = function(joinString) { //returns a string
 }
 
 //array.join(' + ');
+
+//**b)**  Assuming you've implemented _array_ correctly, predict the outcome
+//of the following:
+
+//array.length=0;
+//array.push('c');
+//array.push('b');
+//array.push('a');
+//array.pop();
+//console.log(array.join('a')); //What will this print?
+
+//**c)**  Similarly, predict the outcome here:
+
+//array.length=0;
+//console.log(array.join(array.push(array.push('a')))); // What will this print?
+
 
