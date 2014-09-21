@@ -1,0 +1,327 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red132\green221\blue253;\red192\green237\blue254;}
+\margl1440\margr1440\vieww23880\viewh11600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs48 \cf0 Homework #3\
+Tristan Robinson
+\b0\fs36 \
+\
+
+\b \cb2 Problem 1
+\b0 \
+\cb1 var array = \{length:0\};\
+\
+array.pop = function()\{\
+    var removedItemPosition = (this.length)-1;\
+    var removedItem = this[removedItemPosition];\
+    delete this[removedItemPosition];\
+    this.length--;\
+    return removedItem;\
+\}\
+\
+array.push = function(addedItem)\{\
+    this[this.length] = addedItem;\
+    this.length++;\
+    return this.length;\
+\}\
+\
+array.join = function(spacerChar)\{\
+    var joinedText = this[0];\
+    for(var i=1;  i<this.length; i++)\{\
+    joinedText = joinedText + spacerChar + this[i];\
+    \}\
+    return joinedText;\
+\}\
+\
+\cb3 Predictions:\
+\cb1 1. It prints the string \'93cab\'94\
+2. It prints the string \'93a21\'94\
+\
+
+\b \cb2 Problem 2\
+
+\b0 \cb1 \
+The following works. But\'85rather than getting the \'93Test failed\'94 text back from the test code, it simply shows NaN for the failing values. Something not quite right. Come back to this and troubleshoot if time permits.\
+\
+\
+var cardReader = \{\
+\
+	rank: function(card) \{\
+    if ((card%1===0) && (card>-1) && (card<52) && typeof card == "number")\{\
+    card = Math.ceil((card+1)/4);\
+    return card;\
+    \}\
+    else return NaN;\
+    \},\
+\
+	suit: function(card) \{\
+	if ((card%1===0) && (card>-1) && (card<52) && typeof card == "number")\{\
+    card = (card%4)+1;\
+    return card;\
+    \}\
+    else return NaN;\
+    \},\
+\
+	cardID: function(rank,suit) \{\
+	if ((rank%1===0) && (rank>0) && (rank<14) && typeof rank == "number" &&\
+    (suit%1===0) && (suit>0) && (suit<5) && typeof suit == "number")\{\
+        \
+        var cardID = (rank-1)*4 + suit-1;\
+        return cardID;\
+        \}\
+        else return NaN;\
+    \},\
+\
+	color: function(card) \{\
+	var mySuit = this.suit(card);\
+    if ((card%1===0) && (card>-1) && (card<52) && typeof card == "number")\{\
+        if ((mySuit === 1) || (mySuit ===2))\
+        return "red";\
+        else \
+            return "black";\
+            \}\
+            else return NaN;\
+    \},\
+\
+//someExtraProperty: whatever...Tristan doesn't understand what this comment pertains to.\
+\
+	name: function(card) \{\
+	var suitName = ["Hearts", "Diamonds", "Spades", "Clubs"];\
+    var rankName = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven",\
+    "Eight", "Nine", "Ten", "Jack", "Queen", "King"]\
+    if ((card%1===0) && (card>-1) && (card<52) && typeof card == "number")\{\
+    var fullName = rankName[this.rank(card)-1] + " of " + suitName[this.suit(card)-1];\
+    return fullName;\
+    \}\
+    else return NaN;\
+    \},\
+\
+\};\
+\
+\
+\
+// TESTING:\
+function assert(claim,message) \{\
+    if (!claim) console.error(message);\
+\}\
+assert(cardReader.rank(0)===1,  "Test 1 failed");\
+assert(cardReader.rank(3)===1,  "Test 2 failed");\
+assert(cardReader.rank(51)===13,"Test 3 failed");\
+assert(cardReader.suit(0)===1,  "Test 4 failed");\
+assert(cardReader.suit(5)===2,  "Test 5 failed");\
+assert(cardReader.suit(51)===4, "Test 6 failed");\
+assert(cardReader.cardID(1,1)===0,    "Test 7 failed");\
+assert(cardReader.cardID(13,4)===51,  "Test 8 failed");\
+assert(cardReader.cardID(8,3)===30,   "Test 9 failed");\
+assert(cardReader.color(0)==='red',   "Test 10 failed");\
+assert(cardReader.color(2)==='black', "Test 11 failed");\
+assert(cardReader.name(5)==='Two of Diamonds', "Test 12 failed");\
+assert(cardReader.name(51)==='King of Clubs',  "Test 13 failed");\
+\
+\
+// Extra testing!\
+// These tests check that invalid arguments produce invalid output.\
+// I.e. "garbage in guarantees garbage out".\
+assert(Number.isNaN(cardReader.rank(52)),  "Test 21 failed");\
+assert(Number.isNaN(cardReader.rank("0")), "Test 22 failed");\
+assert(Number.isNaN(cardReader.rank(-1)),  "Test 23 failed");\
+assert(Number.isNaN(cardReader.rank(2.5)), "Test 24 failed");\
+assert(Number.isNaN(cardReader.rank(undefined)),"Test 25 failed");\
+\
+assert(Number.isNaN(cardReader.suit(52)),   "Test 26 failed");\
+assert(Number.isNaN(cardReader.suit(false)),"Test 27 failed");\
+assert(Number.isNaN(cardReader.suit(true)), "Test 28 failed");\
+assert(Number.isNaN(cardReader.suit(-1)),   "Test 29 failed");\
+assert(Number.isNaN(cardReader.suit(3.14)), "Test 30 failed");\
+\
+assert(Number.isNaN(cardReader.cardID(0,1)),   "Test 31 failed");\
+assert(Number.isNaN(cardReader.cardID("1",1)), "Test 32 failed");\
+assert(Number.isNaN(cardReader.cardID(1,5)),   "Test 33 failed");\
+assert(Number.isNaN(cardReader.cardID(14,1)),  "Test 34 failed");\
+assert(Number.isNaN(cardReader.cardID(-1,-1)), "Test 35 failed");\
+assert(Number.isNaN(cardReader.cardID(0.5,1)), "Test 36 failed");\
+assert(Number.isNaN(cardReader.cardID(1,NaN)), "Test 37 failed");\
+\
+assert(Number.isNaN(cardReader.color('apple')),"Test 41 failed");\
+assert(Number.isNaN(cardReader.color(true)),   "Test 42 failed");\
+assert(Number.isNaN(cardReader.name(false)),   "Test 43 failed");\
+assert(Number.isNaN(cardReader.name(-1)),      "Test 44 failed");\
+assert(Number.isNaN(cardReader.name(52)),      "Test 45 failed");\
+assert(Number.isNaN(cardReader.name(NaN)),     "Test 46 failed");\
+\
+
+\b \cb2 Problem 3\
+
+\b0 \cb1 \
+\cb3 Copy\
+\cb1 function copy(obj)\{\
+    var newObj = new Object();\
+    for(var key in obj)\{\
+    newObj[key] = obj[key]\
+    \}\
+    return newObj;\
+\};\
+\
+\cb3 Compare\
+\cb1 function equal(objA, objB)\{\
+    var objAList = new Object();\
+    var objBList = new Object();\
+    for(var key in objA)\{\
+    objAList = objAList + key + objA[key]\}\
+    for(var key in objB)\{\
+    objBList = objBList + key + objB[key]\}\
+if(objAList == objBList)\
+return true;\
+else\
+return false;\
+\}\
+\cb3 Compare for Same Properties (regardless of values)\
+\cb1 function similar(objA, objB)\{\
+    var objAProperties = new Object();\
+    var objBProperties = new Object();\
+    for(var key in objA)\{\
+    objAProperties = objAProperties + key\}\
+    for(var key in objB)\{\
+    objBProperties = objBProperties + key\}\
+if(objAProperties == objBProperties)\
+return true;\
+else\
+return false;\
+\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \cb3 Union\
+\cb1 \
+function union(objA, objB)\{\
+    if (typeof(objA) != "object" || typeof(objB) != "object")\
+    return undefined;\
+    for(var key in objA)\{\
+    if (!(key in objB))\{   //Check in objB to see if each property in obj A is there\
+        objB[key] = objA[key]    //If the property of objA is not in B at all, add it.\
+        \}\
+    else objB[key] = (objA[key] || objB[key]);   //If property is there, add the OR'd value\
+    \}\
+        return objB;\
+    \}\
+\
+\cb3 Intersection\
+\cb1 \
+function intersection(objA, objB)\{\
+    if (typeof(objA) != "object" || typeof(objB) != "object")\
+    return undefined;\
+    var objAB = \{\};\
+    for(var key in objA)\{\
+    if (key in objB)   //Check in objB to see if each property in objA is there\
+        objAB[key] = (objA[key] && objB[key]); //If property is there, add the And'ed value to the new objAB\
+    \}\
+    for(var key in objB)\{\
+    if (key in objA)    //now check in objA to see if each objB property is there\
+        objAB[key] = (objA[key] && objB[key]); //if the value is there, add the AND'ed value to the new objAB\
+    \}\
+    return objAB;\
+    \}\
+    \
+\cb3 Subtraction\
+\cb1 \
+function subtraction(objA, objB)\{\
+    if (typeof(objA) != "object" || typeof(objB) != "object")\
+    return undefined;\
+    for(var key in objB)\{\
+    if (key in objA)    //check in objA to see if each objB property is there\
+        delete objA[key] //if value is there, remove it from A\
+    \}\
+    return objA;\
+    \}\
+\
+\cb3 Testing Assertions\
+\cb1 \
+// TESTING:\
+function assert(claim,message) \{\
+    if (!claim) console.error(message);\
+\}\
+var testObj1=\{0:"zero", 1:"one", 2:"two"\};\
+var testObj2=\{0:"zero", 3:"three"\};\
+var testObj3=\{0:"zero", 1:"one", 2:"two", 3:"three"\};\
+var testObj4 = \{0: "zero"\}\
+var testObj5 = \{1: "one", 2: "two"\}\
+assert(equal(union(testObj1,testObj2), testObj3),  "Test 1 failed");\
+assert(equal(intersection(testObj1,testObj2), testObj4),  "Test 2 failed");\
+assert(equal(subtraction(testObj1,testObj2), testObj5),  "Test 3 failed");\
+\
+var testObj6=\{elephant:0, giraffe:3\};\
+var testObj7=\{snake:100, elephant:2, ibex:14\};\
+var testObj8=  \{snake: 100, elephant: 2, ibex: 14, giraffe: 3\}\
+var testObj9 = \{elephant: 0, giraffe: 3\}\
+var testObj10 = \{\}\
+assert(equal(union(testObj6,testObj7), testObj8),  "Test 4 failed");\
+assert(equal(intersection(testObj6,testObj7), testObj9),  "Test 5 failed");\
+assert(equal(subtraction(testObj6,testObj7), testObj10),  "Test 6 failed");\
+\
+var testObj11=\{\};\
+var testObj12=\{color:"yellow", size: "large", material: "rayon"\};\
+var testObj13= \{color: "yellow", size: "large", material: "rayon"\};\
+var testObj14 = \{\};\
+var testObj15 = \{\};\
+assert(equal(union(testObj11,testObj12), testObj13),  "Test 7 failed");\
+assert(equal(intersection(testObj11,testObj12), testObj14),  "Test 8 failed");\
+assert(equal(subtraction(testObj11,testObj12), testObj15),  "Test 9 failed");\
+\
+\cb3 Further Consideration\
+\cb1 The way they\'92re implemented, union doesn\'92t copy over the \
+\
+\
+
+\b \cb2 Problem 4 - Social Network\
+
+\b0 \cb1 \
+\cb3 Part A\
+\cb1 var people = \{\};\
+\
+people.meet = function(nameA,nameB) \{ // returns a number\
+if (nameA == nameB) \{\
+    console.log("You can't meet yourself.")\
+    return;\}\
+\
+if (!(nameA in people)) people[nameA] = \{\};\
+if (!(nameB in people)) people[nameB] = \{\};\
+\
+if (nameA in people[nameB]) people[nameB][nameA]++;\
+    else people[nameB][nameA] = 1;\
+\
+    \
+if (nameB in people[nameA]) people[nameA][nameB]++;\
+    else people[nameA][nameB]= 1;\
+    \
+    return people[nameA][nameB];    \
+\}\
+\
+people.haveMet = function(nameA,nameB) \{ //returns a number or falsish\
+	if (nameA == nameB) \{\
+    console.log("Of course this person has met him/herself.")\
+    return;\}\
+    \
+    if (nameA in people[nameB]) return people[nameB][nameA];\
+    else return false;\
+    \
+\}\
+\
+people.friendsOf = function(name) \{ //returns a string\
+	if (!(name in people)) return undefined;\
+    \
+    var listOfFriends = [];\
+    var i = 0;\
+    for(var key in people[name])\{\
+    listOfFriends[i] = [key];\
+    i++\
+    \}\
+    listOfFriends = listOfFriends.sort();\
+    //var output = listOfFriends.toString();\
+    return listOfFriends.toString();\
+\}\
+\
+\cb3 Part B\
+\cb1 \
+\
+}
