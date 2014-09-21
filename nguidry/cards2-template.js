@@ -2,19 +2,39 @@
 var cardReader = {
 
 	rank: function(card) {
+		if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+    	return Math.floor((card/4) + 1);
 	},
 
 	suit: function(card) {
+		if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+		return (card % 4) + 1;
 	},
 
 	cardID: function(rank,suit) {
+		if (rank < 1 || rank > 13 || typeof rank !== "number" || rank % 1 !== 0) {return NaN};
+		if (suit < 1 || suit > 4 || typeof suit !== "number" || suit % 1 !== 0) {return NaN};
+		return ((rank - 1) * 4) + (suit - 1);
 	},
 
 	color: function(card) {
+		if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+	    if (this.suit(card) < 2) {
+			return "red";
+		} else {
+			return "black";
+		  }
 	},
 
 	//someExtraProperty: whatever...
 	name: function(card) {
+		if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) {return NaN};
+		var faces = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"];
+		var suits = ["Hearts", "Diamonds", "Spades", "Clubs"];
+		var cardFace = this.rank(card) - 1;
+		var cardSuit = this.suit(card) - 1;
+
+		return faces[cardFace] + " of " + suits[cardSuit];
 	},
 
 };
