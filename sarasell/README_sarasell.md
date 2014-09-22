@@ -205,7 +205,7 @@ Write three sample assertions to test each of your three merging functions (9 to
 Remember that when comparing your results to the expected results, youll need to see if objects are equal() but not identical.
 
 //ANSWER attempt
-//all three of these assertions are failing, I haven't figured out why yet
+//all three of these assertions are failing, I have yet to figure out why
 function assert(claim,message) {
     if (!claim) console.error(message);
 }
