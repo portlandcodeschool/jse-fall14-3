@@ -34,8 +34,11 @@ function similar (objA, objB) {
 
 // *** b ***
 
+// union function
+
+var unitedObj {};
+
 function union(objA,objB) {
-	// evaluate whether properties are the same in each
 	for (var prop in objA) {
 		unitedObj[prop] = objA[prop];
 	}
@@ -50,15 +53,16 @@ function union(objA,objB) {
 	}
 }
 
-// The intersection of objects A,B is a new object which contains only those properties found in BOTH A and B.  
-// The value of each intersecting property is `(A[key] && B[key])`.
-// For example, the intersection of `{a:1,b:0}` and `{a:0,c:0}` is `{a:0}`.
+// intersect function
 
-var objA = {1: "test", 2:"pencil", k:true};
-var objB = {2: "frog", k: true, z:"llama"};
 var intObj = {};
 
 function intersect(objA,objB) {
+	for (var prop in objA) {
+		if (prop in objB) {
+			intObj[prop] = (objA[prop] && objB[prop]);
+		} 
+	}
 
 }
 
@@ -67,7 +71,9 @@ function intersect(objA,objB) {
 // should identify!) For example, `{a:1,b:0}` minus `{a:0,c:0}` is `{b:0}`, and the reverse subtraction is `{c:0}`.
 
 function subtract(objA,objB) {
-
+	for (var prop in objA) {
+		
+	}
 }
 
 // *** c ***
