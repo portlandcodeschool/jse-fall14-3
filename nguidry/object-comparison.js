@@ -66,17 +66,90 @@ function intersect(objA,objB) {
 
 }
 
-// The subtraction of B from A, aka "A minus B", is an object which contains all the properties of A which are NOT in B.  
-// Note that this merge is usually not symmetric: _A minus B_ doesn't equal _B minus A_ (except in one case, which you 
-// should identify!) For example, `{a:1,b:0}` minus `{a:0,c:0}` is `{b:0}`, and the reverse subtraction is `{c:0}`.
+// subtract function
 
 function subtract(objA,objB) {
 	for (var prop in objA) {
-		
+		if (prop in objB) {
+			delete objA[prop]; 
+		}
 	}
 }
 
-// *** c ***
+// Identify case in which "b minus a" equals "a minus b": This would be the case when the objects 
+// contain the exact same properties going into the function, as they result would be an empty 
+// function both ways. This also applies to two empty functions going into the function.
+
+// *** c *** - in progress
+
+// Write three sample assertions to test each of your three merging functions (9 total).
+// Remember that when comparing your results to the expected results, you'll need to see if 
+// objects are equal() but not identical.
+
+function assert(claim,message) {
+    if (!claim) console.error(message);
+}
+
+// union assertions
+
+var unitedObj {};
+
+function union(objA,objB) {
+	for (var prop in objA) {
+		unitedObj[prop] = objA[prop];
+	}
+
+	for (var prop in objB) {
+		if (!(prop in unitedObj)) {
+			unitedObj[prop] = objB[prop];
+		}
+		if (objB[prop] !== objA[prop]) {
+			unitedObj[prop] = (objA[prop] || objB[prop]);
+		}
+	}
+}
+
+var objA = ;
+var objB = ;
+union(objA,objB);
+assert(unitedObj==0,  "Test 1 failed");
+
+var objA = ;
+var objB = ;
+assert(union(objA,objB)===0,  "Test 2 failed");
+
+var objA = ;
+var objB = ;
+assert(union(objA,objB)===0,  "Test 3 failed");
+
+// intersect assertions
+
+var objA = ;
+var objB = ;
+assert(intersect(objA,objB)===0,  "Test 4 failed");
+
+var objA = ;
+var objB = ;
+assert(intersect(objA,objB)===0,  "Test 5 failed");
+
+var objA = ;
+var objB = ;
+assert(intersect(objA,objB)===0,  "Test 6 failed");
+
+// subtract assertions
+
+var objA = ;
+var objB = ;
+assert(subtract(objA,objB)===0,  "Test 7 failed");
+
+var objA = ;
+var objB = ;
+assert(subtract(objA,objB)===0,  "Test 8 failed");
+
+var objA = ;
+var objB = ;
+assert(subtract(objA,objB)===0,  "Test 9 failed");
+
 
 // *** d ***
 
