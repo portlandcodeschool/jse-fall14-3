@@ -1,0 +1,103 @@
+function copy(obj){
+    var newObj = new Object();
+    for(var key in obj){
+    newObj[key] = obj[key]
+    }
+    return newObj;
+};
+
+var obj = {0:"red", 1:"orange", 2:"yellow"}
+
+function equal(objA, objB){
+    var objAList = new Object();
+    var objBList = new Object();
+    for(var key in objA){
+    objAList = objAList + key + objA[key]}
+    for(var key in objB){
+    objBList = objBList + key + objB[key]}
+if(objAList == objBList)
+return true;
+else
+return false;
+}
+
+function similar(objA, objB){
+    var objAProperties = new Object();
+    var objBProperties = new Object();
+    for(var key in objA){
+    objAProperties = objAProperties + key}
+    for(var key in objB){
+    objBProperties = objBProperties + key}
+if(objAProperties == objBProperties)
+return true;
+else
+return false;
+}
+
+function union(objA, objB){
+    if (typeof(objA) != "object" || typeof(objB) != "object")
+    return undefined;
+    for(var key in objA){
+    if (!(key in objB)){   //Check in objB to see if each property in obj A is there
+        objB[key] = objA[key]    //If the property of objA is not in B at all, add it.
+        }
+    else objB[key] = (objA[key] || objB[key]);   //If property is there, add the OR'd value
+    }
+        return objB;
+    }
+
+function intersection(objA, objB){
+    if (typeof(objA) != "object" || typeof(objB) != "object")
+    return undefined;
+    var objAB = {};
+    for(var key in objA){
+    if (key in objB)   //Check in objB to see if each property in objA is there
+        objAB[key] = (objA[key] && objB[key]); //If property is there, add the And'ed value to the new objAB
+    }
+    for(var key in objB){
+    if (key in objA)    //now check in objA to see if each objB property is there
+        objAB[key] = (objA[key] && objB[key]); //if the value is there, add the AND'ed value to the new objAB
+    }
+    return objAB;
+    }
+    
+function subtraction(objA, objB){
+    if (typeof(objA) != "object" || typeof(objB) != "object")
+    return undefined;
+    for(var key in objB){
+    if (key in objA)    //check in objA to see if each objB property is there
+        delete objA[key] //if value is there, remove it from A
+    }
+    return objA;
+    }
+    
+// TESTING:
+function assert(claim,message) {
+    if (!claim) console.error(message);
+}
+var testObj1={0:"zero", 1:"one", 2:"two"};
+var testObj2={0:"zero", 3:"three"};
+var testObj3={0:"zero", 1:"one", 2:"two", 3:"three"};
+var testObj4 = {0: "zero"}
+var testObj5 = {1: "one", 2: "two"}
+assert(equal(union(testObj1,testObj2), testObj3),  "Test 1 failed");
+assert(equal(intersection(testObj1,testObj2), testObj4),  "Test 2 failed");
+assert(equal(subtraction(testObj1,testObj2), testObj5),  "Test 3 failed");
+
+var testObj6={elephant:0, giraffe:3};
+var testObj7={snake:100, elephant:2, ibex:14};
+var testObj8=  {snake: 100, elephant: 2, ibex: 14, giraffe: 3}
+var testObj9 = {elephant: 0, giraffe: 3}
+var testObj10 = {}
+assert(equal(union(testObj6,testObj7), testObj8),  "Test 4 failed");
+assert(equal(intersection(testObj6,testObj7), testObj9),  "Test 5 failed");
+assert(equal(subtraction(testObj6,testObj7), testObj10),  "Test 6 failed");
+
+var testObj11={};
+var testObj12={color:"yellow", size: "large", material: "rayon"};
+var testObj13= {color: "yellow", size: "large", material: "rayon"};
+var testObj14 = {};
+var testObj15 = {};
+assert(equal(union(testObj11,testObj12), testObj13),  "Test 7 failed");
+assert(equal(intersection(testObj11,testObj12), testObj14),  "Test 8 failed");
+assert(equal(subtraction(testObj11,testObj12), testObj15),  "Test 9 failed");

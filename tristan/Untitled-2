@@ -1,0 +1,14 @@
+var array = {length:0, pop:pop(), push:push(), join:join(), 0:, 1:, 2:, 3};
+
+array.pop = function pop() { //removes the last faux element from the faux array, returns the removed element
+	var arrayLength = array.length;
+    
+}
+
+array.push = function push(/*...*/) { //adds the passed-in params to the end of faux array and updates length to reflect additions, returns the new value of length
+	//...
+}
+
+array.join = function join(/*...*/) { //returns a string representing concatenation of all of the properties of the faux array
+	//...
+}

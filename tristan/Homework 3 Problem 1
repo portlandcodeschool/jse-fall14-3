@@ -1,0 +1,85 @@
+var array = {length:0, pop:pop(), push:push(), join:join(), 0:, 1:, 2:, 3};
+
+array.pop = function pop() { //removes the last faux element from the faux array, returns the removed element
+	var arrayLength = array.length;
+    
+}
+
+array.push = function push(/*...*/) { //adds the passed-in params to the end of faux array and updates length to reflect additions, returns the new value of length
+	//...
+}
+
+array.join = function join(/*...*/) { //returns a string representing concatenation of all of the properties of the faux array
+	//...
+}
+//-------------Trying Again
+
+var array = {length:0};
+
+array.pop = function(){
+    var removedItem = this.length-1
+    delete this.length-1;
+    this.length = this.length -1;
+    return removedItem;
+}
+
+//array.push = function(addedItem){
+//    this.length+1 = addedItem;
+//    length++;
+//    return length;
+//}
+
+array.push = function(addedItem){
+    var newLength = length + 1;
+    this.newLength = addedItem;
+    length = length + 1;
+    return length;
+}
+
+array.join = function(spacerChar){
+    var joinedText;
+    for(var key in array){
+    joinedText = joinedText + spacerChar + key;
+    }
+    return joinedText;
+}
+
+//-------------Trying x3
+
+var array = {length:0};
+
+array.pop = function(){
+    var removedItemPosition = (this.length)-1;
+    var removedItem = this[removedItemPosition];
+    delete this[removedItemPosition];
+    this.length--;
+    return removedItem;
+}
+
+//array.push = function(addedItem){
+//    this[length+1] = addedItem;
+//    length++;
+//    return length;
+//}
+
+array.push = function(addedItem){
+    this[this.length] = addedItem;
+    this.length++;
+    return this.length;
+}
+
+//array.join = function(spacerChar){
+//    var joinedText;
+//    for(var key in array){
+//    joinedText = joinedText + spacerChar + key;
+//    }
+//   return joinedText;
+//}
+
+array.join = function(spacerChar){
+    var joinedText = this[0];
+    for(var i=1;  i<this.length; i++){
+    joinedText = joinedText + spacerChar + this[i];
+    }
+    return joinedText;
+}
