@@ -92,64 +92,64 @@ function assert(claim,message) {
 
 // union assertions
 
-var unitedObj {};
+var objA = {tea:"green", hat:"beret", shape:"circle"};
+var objB = {shape:"square", hat:"beret", pet: "frog", tea:"black"};
+var testObj1 = {tea: "green", hat: "beret", shape: "circle", pet: "frog"};
+assert(equal(union(objA,objB),testObj1),  "Test 1 failed");
 
-function union(objA,objB) {
-	for (var prop in objA) {
-		unitedObj[prop] = objA[prop];
-	}
 
-	for (var prop in objB) {
-		if (!(prop in unitedObj)) {
-			unitedObj[prop] = objB[prop];
-		}
-		if (objB[prop] !== objA[prop]) {
-			unitedObj[prop] = (objA[prop] || objB[prop]);
-		}
-	}
-}
 
-var objA = ;
-var objB = ;
-union(objA,objB);
-assert(unitedObj==0,  "Test 1 failed");
+var objC = {tea:false, hat:"baseball cap", temperature: "cold"};
+var objD = {shape:"square", hat:"beret", pet: "frog", tea:"black"};
+var testObj2 = {tea: "black", hat: "baseball cap", temperature: "cold", shape: "square", pet: "frog"};
+assert(equal(union(objC,objD),testObj2),  "Test 2 failed");
 
-var objA = ;
-var objB = ;
-assert(union(objA,objB)===0,  "Test 2 failed");
 
-var objA = ;
-var objB = ;
-assert(union(objA,objB)===0,  "Test 3 failed");
+
+var objE = {1: true, duck: "quack", cereal:"corn flakes"};
+var objF = {1: "lake", feet:true, water: false};
+var testObj3 = {1: true, duck: "quack", cereal: "corn flakes", feet: true, water: false};
+assert(equal(union(objE,objF),testObj3),  "Test 3 failed");
 
 // intersect assertions
 
-var objA = ;
-var objB = ;
-assert(intersect(objA,objB)===0,  "Test 4 failed");
+var objG = {a:1, b:2, four:5};
+var objH = {animal:"zebra", b:4, four:false};
+var testObj4 = {b: 4, four: false};
+assert(equal(intersect(objG,objH),testObj4),  "Test 4 failed");
 
-var objA = ;
-var objB = ;
-assert(intersect(objA,objB)===0,  "Test 5 failed");
 
-var objA = ;
-var objB = ;
-assert(intersect(objA,objB)===0,  "Test 6 failed");
+var objI = {a:0, b:3, c:7};
+var objJ = {z:4, b:8, c:7, d:5};
+var testObj5 = {b: 8, c: 7};
+assert(equal(intersect(objI,objJ),testObj5),  "Test 5 failed");
+
+
+
+var objK = {water:"tap", paper:"white", caffeine:"coffee"};
+var objL = {water:"bottled", paper:"white", caffeine:"tea"};
+var testObj6 = {water: "bottled", paper: "white", caffeine: "tea"};
+assert(equal(intersect(objK,objL),testObj6),  "Test 6 failed");
 
 // subtract assertions
 
-var objA = ;
-var objB = ;
-assert(subtract(objA,objB)===0,  "Test 7 failed");
+var objM = {water:"tap", paper:"white", caffeine:"coffee"};
+var objN = {water:"bottled", paper:"white", caffeine:"tea"};
+var testObj7 = {};
+assert(equal(subtract(objM,objN),testObj7),  "Test 7 failed");
 
-var objA = ;
-var objB = ;
-assert(subtract(objA,objB)===0,  "Test 8 failed");
+var objO = {a:1, b:2, four:5};
+var objP = {animal:"zebra", b:4, four:false};
+var testObj8 = {a:1};
+assert(equal(intersect(objO,objP),testObj8),  "Test 8 failed");
 
-var objA = ;
-var objB = ;
-assert(subtract(objA,objB)===0,  "Test 9 failed");
+var objQ = {tea:false, hat:"baseball cap", temperature: "cold"};
+var objR = {shape:"square", hat:"beret", pet: "frog", tea:"black"};
+var testObj9 = {temperature:"cold"};
+assert(equal(intersect(objQ,objR),testObj9),  "Test 9 failed");
 
 
 // *** d ***
 
+// This will not work if there is a property in both objects, but the one of the properties is false. 
+// This is because of the (A ? A : B ) expression that is implemented by the || operator.
