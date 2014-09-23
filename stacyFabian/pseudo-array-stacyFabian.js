@@ -12,9 +12,10 @@ array.pop = function() {
 
 array.join = function(connector) {
 	var fullString = "";
-	for (var key in array) {
-		if (key<this.length) {
-			fullString = (fullString+connector+array[key]);
+	for (var key=0; key<this.length; key++) {
+		fullString = fullString+this[key];
+	if (key<this.length-1) {
+		fullString = fullString+connector;
 		}
 	}
 	return fullString;

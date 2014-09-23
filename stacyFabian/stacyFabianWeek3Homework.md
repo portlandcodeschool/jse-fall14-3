@@ -48,9 +48,10 @@ array.pop();
 
 console.log(array.join('a')); //What will this print?
 	Answer: 'a'
-	Actual print out: // [looking to understand why this is]
+	Actual print out: [see below]
 	-> undefined
 		" a"
+	// This is "acab" because the argument passed is "a" and that is put in front of each item in the array and currently the array only has "c" and "a" in it.
 ```
 
 **c)**  Similarly, predict the outcome here:
