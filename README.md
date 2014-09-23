@@ -24,13 +24,14 @@ _Hint:_ Within each method, to refer to your array object, you may use either th
 **b)**  Assuming you've implemented _array_ correctly, predict the outcome
 of the following:
 ```
-array.length=0;
-array.push('c');
-array.push('b');
-array.push('a');
-array.pop();
+array.length=0; //changes length to 0
+array.push('c'); // adds c val with key + length
+array.push('b'); // adds b val with key + length
+array.push('a'); // adds a val with key + length
+array.pop(); // removes a changes length
 console.log(array.join('a')); //What will this print?
 ```
+
 
 **c)**  Similarly, predict the outcome here:
 ```
