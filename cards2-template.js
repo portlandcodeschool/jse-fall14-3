@@ -2,22 +2,47 @@
 var cardReader = {
 
 	rank: function(card) {
+	return Math.floor((card/4) + 1);
+  		
 	},
 
 	suit: function(card) {
+	return (card % 4) + 1;
+	
 	},
 
 	cardID: function(rank,suit) {
+	return 4 * (rank -1 ) + (suit - 1);
+	
 	},
 
 	color: function(card) {
+	var cardSuit = this.suit(card);
+	if(cardSuit < 3){
+		var result = 'red';
+	}
+	else{
+		result = 'black';
+	}
+	return result;
 	},
 
 	//someExtraProperty: whatever...
 	name: function(card) {
+		var cardRank = this.rank(card);
+	var cardSuit = this.suit(card);
+	return this.cardRankArr[cardRank] + ' of ' + this.cardSuitArr[cardSuit];
 	},
 
+	cardRankArr: ['','Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'],
+
+	cardSuitArr: ['','Hearts','Diamonds', 'Spades', 'Clubs'],
+
 };
+
+
+
+
 
 
 
@@ -25,7 +50,7 @@ var cardReader = {
 function assert(claim,message) {
     if (!claim) console.error(message);
 }
-assert(rank(0)===1,  "Test 1 failed");
+assert(cardReader.rank(0)===1,  "Test 1 failed");
 assert(rank(3)===1,  "Test 2 failed");
 assert(rank(51)===13,"Test 3 failed");
 assert(suit(0)===1,  "Test 4 failed");
