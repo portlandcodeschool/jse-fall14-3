@@ -28,7 +28,7 @@ array.push = function(element) { //changes array, returns a number
 	
 }
 
-array.join = function(delimeter) { //returns a string
+array.join = function(delimeter = ', ') { //returns a string
 	
 	var string = '';
 	

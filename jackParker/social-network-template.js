@@ -120,16 +120,18 @@ people.friendsOfFriendsOf = function(name) {
 		
 	}
 	
-	// console.log('Friends of ' + name + ': ' + friendsOfName);
-	
 	
 	var degreeTwo = {};
 	
 	for(var key in friendsOfName) {
 		
+		console.log(key + ' is a friend of ' + name);
+		
 		if(key in people.index) {
 		
 			for(var prop in people.index[key].friends) {
+				
+				console.log(prop + ' is a friend of ' + key);
 				
 				degreeTwo[prop] = true;
 				
@@ -177,6 +179,16 @@ people.friendsOfFriendsOf = function(name) {
 	    return objNew;
 	}
 	
-	return union(friendsOfName, degreeTwo);
+	var finalFriendList = union(friendsOfName, degreeTwo);
+	
+	var arr = [];
+	
+	for(var key in finalFriendList) {
+		
+		arr.push(key);
+		
+	}
+	
+	return arr.sort();
 	
 }
