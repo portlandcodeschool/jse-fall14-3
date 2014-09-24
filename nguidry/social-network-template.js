@@ -17,16 +17,59 @@ people.index = {};
 //* `people.friendsOf(name)` should return a string listing the names of all 
 //people whom `name` has met at least once (or undefined if `name` doesn't exist).   List the names in alphabetical order, and make sure each name appears only once.
 
+var people = {};
+
+people.index = {};
+
 people.meet = function(nameA,nameB) { // returns a number
-	nameA.name = nameA.toString(); 
-	nameB.name = nameB.toString();
+  //if a == b (same name), dont execute?
+  var nameA,
+  	  nameB;
+  	  //create a counter function to store in place of timesMet
+
+  if (people.index.hasOwnProperty('nameA') == false) {
+    	people.index.nameA = {
+    		name:nameA, 
+    		friends: {
+    			nameB: 1; //use variable / call with brackets 
+    		}
+    	};
+  	}
+  if (people.index.hasOwnProperty('nameB') == false) {
+    	people.index.nameB = {
+    		name:nameA, 
+    		friends: {
+    			nameA: 1;
+    		}
+    	};
+  	} else {
+  	++people.index.nameA.friends.nameB;
+  	++people.index.nameB.friends.nameA;
+  }
+  return people.index.nameA.friends.nameB;
 }
 
+people.meet(Dan, Ben);
+
+//final product:
+
+
 people.haveMet = function(nameA,nameB) { //returns a number or falsish
-	//...
+	if (this.index.hasOwnProperty('nameA') == false) {
+   return 0;
+  } else {
+    return this.index.nameA.friends.nameB.timesMet;
+  }
 }
 
 people.friendsOf = function(name) { //returns a string
-	//...
+	//incorporate getOwnPropertyNames
+	var friendsList = [];
+  for (var prop in name.friends) {
+    friendsList.push(prop);
+  }
+  friendsList.sort();
+  friendsList.join(" /n");
+  return friendsList;
 }
 
