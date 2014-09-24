@@ -2,20 +2,70 @@
 var cardReader = {
 
   rank: function(card) {
+    return this.isValid(card,0,51) &&
+        Math.floor(card/4)+1;
   },
 
   suit: function(card) {
+    var cardSuit = (card % 4) + 1;
+    return this.isValid(card,0,51) && cardSuit;
   },
 
   cardID: function(rank,suit) {
+    return this.isValid(this.rank,1,13) &&
+            this.isValid(this.suit,1,4) &&
+            (this.rank - 1)*4 + (this.suit -1);
   },
 
   color: function(card) {
+    var cardSuit = this.suit(card);
+    if (cardSuit < 3) {
+      var result = "red";
+    } else {
+      return "black";
+    }
+    return result;
   },
 
   //someExtraProperty: whatever...
   name: function(card) {
+    var cardRank = this.rank(card);
+    var cardSuit = this.suit(card);
+
+    return this.cardRankArr[cardRank] + ' of ' + this.cardSuitArr[cardSuit];
   },
+
+  cardRankArr: [ "",
+                "Ace",
+                "Two",
+                "Three",
+                "Four",
+                "Five",
+                "Six",
+                "Seven",
+                "Eight",
+                "Nine",
+                "Ten",
+                "Jack",
+                "Queen",
+                "King"],
+
+
+  cardSuitArr: [ "",
+                "Hearts",
+                "Diamonds",
+                "Spades",
+                "Clubs"],
+
+  isValid: function(num,low,high) { // Returns--> NaN, true
+      if ((typeof num)!="number") //wrong type
+          return NaN;
+      if (num%1 !== 0) //non-integer
+          return NaN;
+      if (num<low || num>high) //out of range
+          return NaN;
+      return true;
+  }
 
 };
 
