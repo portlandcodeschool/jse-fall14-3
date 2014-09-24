@@ -55,6 +55,20 @@ It would be best to modify your own code from Homework 2, but if you didn't solv
 **a)**
 Write a function `copy(obj)`, which duplicates an object (not just copying a reference to it).  You only need to duplicate only one level: if `obj` contains another object _inner_, the duplicate may share _inner_ rather than copying it too.
 
+```
+var oneObj = {a:true, b:1, name:'greg'};
+var twoObj = {}
+function copy(newObj){
+  newObj = {};
+  for(var key in oneObj){
+      newObj[key] = oneObj[key];
+   }
+  return twoObj;
+}
+copy(twoObj);
+```
+
+
 Write another function to compare two objects:
 `equal(objA,objB)` should return true only when `objA` and `objB` have exactly the same properties with the same values.  Note that two empty objects should be considered equal.
 
