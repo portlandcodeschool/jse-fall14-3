@@ -66,13 +66,13 @@ console.log(array.join(array.push(array.push('a')))); // What will this print?
 <!-- First it will process the first processed (last written) array.push statement (which results in a 2). Then it will process the next array.push statement which will add '2' as the value of the 3 property. Then it will print out ' 3' as per the "array.join" function that is basically asking it to print out "3" in the whole function so it just adds a space to the beginning of "3" and ends. -->
 
 	Actual: 
-	-> undefined
-		""
 
-<!-- Not sure why. -->
+
 ---
 
 **2)  A Cards Toolkit!**  _[Easy, 1 hr]_
+
+// HINT: use "this"
 
 Revisit your playing card functions from homework 2, problem 5b.  Repackage them in a Toolkit pattern, as methods of a single master object.  You may assign that object to any variable you like, but that variable should not appear in the definitions of your methods (use `this` instead).  You'll need to change the form of your method definitions and their calls to other methods, but their logic and most of their code will remain the same.
 
