@@ -3,26 +3,25 @@ var people = {};
 
 people.index = {};
 
-};
-
-people.meet = function(Sara,Joel) { // returns a number
-	if (!(Sara in people)) {
-			people[Sara] = {};
+people.meet = function(nameA,nameB) { // returns a number
+	if (!(nameA in people.index)) {
+			people.index[nameA] = {};
 	}
-	if (!(Joel in people)) {
-			people[Joel] = {};
+	if (!(nameB in people.index)) {
+			people.index[nameB] = {};
 	}
-	if (!(Sara in people[Joel])) {
-		people[Joel] = "Sara"; //this is definitely not right
+	if (!(nameA in people.index[nameB])) {
+		people.index[nameB][nameA] = people.index[nameA];
 	}
-	if (!(Joel in people[Sara])) {
-		people[Sara] = "Joel";	//this is definitely not right
+	if (!(nameB in people.index[nameA])) {
+		people.index[nameA][nameB] = people.index[nameB];
 	}
-};
-	return ++this.length;
-	count
-	return number of times those people have met, including this new meeting.
-	this involves a counter, i think
+}
+//	return ++this.length;
+//	count
+//	return number of times those people have met, including this new meeting.
+//	this involves a counter, i think
+//	if they dont yet exist, set counter to 1
 }
 
 people.haveMet = function(nameA,nameB) { //returns a number or falsish
