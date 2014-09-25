@@ -58,7 +58,7 @@ array.join = function(sep) {
 b)  Assuming you've implemented _array_ correctly, predict the outcome
 of the following:
 ```
-*/
+
 array.length=0;
 array.push('c');
 array.push('b');
@@ -66,6 +66,8 @@ array.push('a');
 array.pop();
 console.log(array.join('a')); //What will this print?
 ```
+*/
+
 This prints:  "cab"
 
 /*

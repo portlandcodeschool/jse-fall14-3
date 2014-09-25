@@ -37,7 +37,6 @@ c)  Similarly, predict the outcome here:
 array.length=0;
 console.log(array.join(array.push(array.push('a')))); // What will this print?
 ```
-
 ---
 
 2)  A Cards Toolkit!  _[Easy, 1 hr]_
@@ -122,7 +121,7 @@ var unionObj = {};
 var union = function(objA,objB) {
 
 	for (var key in objA) {
-      		unionObj[key] = objA[key];    
+      	unionObj[key] = objA[key];    
   	}
 
 	for (key in objB) {
@@ -206,8 +205,7 @@ Finally: even if your functions implement perfectly the definitions above,
 intersection and union are still not symmetric.  That is, `similar(union(A,B),union(B,A))` will always be true, but `equal(union(A,B),union(B,A))` may not be.  Likewise with intersection.  Explain!
 */
 
-// ANSWER:
-
+// ANSWER: 
 
 
 /*
