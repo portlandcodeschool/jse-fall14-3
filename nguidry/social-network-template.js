@@ -1,9 +1,5 @@
 // Exercise 4a
 
-var people = {};
-
-people.index = {};
-
 //* `people.meet(nameA,nameB)` should accept two names, update `people`, and 
 //return the total number of times those two have met, including this new 
 //meeting. If either person isn't yet represented in `people`, add them.
@@ -17,55 +13,50 @@ people.index = {};
 //* `people.friendsOf(name)` should return a string listing the names of all 
 //people whom `name` has met at least once (or undefined if `name` doesn't exist).   List the names in alphabetical order, and make sure each name appears only once.
 
+
+
 var people = {};
 
 people.index = {};
 
-people.meet = function(nameA,nameB) { // returns a number
-  //if a == b (same name), dont execute?
-  var nameA,
-  	  nameB;
-  	  //create a counter function to store in place of timesMet
+people.meet = function(nameA,nameB) { 
+  if(nameA === nameB) {return;}
 
-  if (people.index.hasOwnProperty('nameA') == false) {
-    	people.index.nameA = {
-    		name:nameA, 
-    		friends: {
-    			nameB: 1; //use variable / call with brackets 
-    		}
-    	};
+  if (this.index.hasOwnProperty(nameA) == false) {
+    this.index[nameA] = {
+    	name: nameA, 
+    	friends};
+    this.index[nameA]friends[nameB];
   	}
-  if (people.index.hasOwnProperty('nameB') == false) {
-    	people.index.nameB = {
-    		name:nameA, 
-    		friends: {
-    			nameA: 1;
-    		}
-    	};
-  	} else {
-  	++people.index.nameA.friends.nameB;
-  	++people.index.nameB.friends.nameA;
+  
+  if (this.index.hasOwnProperty(nameB) == false) {
+    this.index[nameB] = {
+    	name: nameB, 
+    	friends};
+    this.index[nameB]friends[nameA];
+  	}	else {
+  		[nameA]friends[nameB]++; //this incrementer isn't working
+    	[nameB]friends[nameA]++;
   }
-  return people.index.nameA.friends.nameB;
+  
+  return [nameA]friends[nameB];
 }
 
-people.meet(Dan, Ben);
-
-//final product:
+people.meet("Dan", "Ben");
 
 
 people.haveMet = function(nameA,nameB) { //returns a number or falsish
 	if (this.index.hasOwnProperty('nameA') == false) {
    return 0;
   } else {
-    return this.index.nameA.friends.nameB.timesMet;
+    return this.index[nameA]friends[nameB][timesMet];
   }
 }
 
 people.friendsOf = function(name) { //returns a string
 	//incorporate getOwnPropertyNames
-	var friendsList = [];
-  for (var prop in name.friends) {
+var friendsList = [];
+  for (var prop in this.index[name]friends) {
     friendsList.push(prop);
   }
   friendsList.sort();
