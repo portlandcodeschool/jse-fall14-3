@@ -104,7 +104,7 @@ for(var i in y){
 -----------------------------
 // The beginings of 4.a
 
-var people.meet(sara,joel){
+/*var people.meet(sara,joel){
 
 }
 
@@ -120,4 +120,28 @@ var people.meet(sara,joel){
     if (!(joel in people[sara])) {
         people[joel] = people[sara];    
     }
+};*/
+
+
+people.meet = function(name1,name2) {
+		if (!( name1 in this.index)){
+
+			people.index[name1] = {name: name1, friends:{}};
+		}
+		
+
+		if(!(name2 in this.index)){
+
+			people.index[name2] = {name:name2,};
+		}
+
 };
+
+
+
+
+	
+
+
+
+
