@@ -2,36 +2,33 @@
 var cardReader = {
 
   rank: function(card) {
-    var cardRank = Math.floor((card / 4) + 1);
-    return this.isValid(card,0,51) && cardRank;
+    if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) { return NaN}
+    return Math.floor((card / 4) + 1);
   },
 
   suit: function(card) {
-    var cardSuit = (card % 4) + 1;
-    return this.isValid(card,0,51) && cardSuit;
+    if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) { return NaN}
+    return (card % 4) + 1;
   },
 
   cardID: function(rank,suit) {
-    return this.isValid(rank,1,13) &&
-            this.isValid(suit,1,4) &&
-            (rank - 1)*4 + (suit -1);
+    if (rank < 1 || rank > 13 || typeof rank !== "number" || rank % 1 !== 0) { return NaN}
+    if (suit < 1 || suit > 4 || typeof suit !== "number" || suit % 1 !== 0) { return NaN}
+    return ((rank - 1)*4) + (suit -1);
   },
 
   color: function(card) {
-    if(typeof card !== 'number'){
-      return "Not a Number"
-    }
-    var cardSuit = this.suit(card);
-    if (cardSuit < 3) {
-      var result = "red";
+    if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) { return NaN}
+    if (this.suit(card) < 3) {
+      return "red";
     } else {
       return "black";
     }
-    return result;
   },
 
   //someExtraProperty: whatever...
   name: function(card) {
+    if (card < 0 || card > 51 || typeof card !== "number" || card % 1 !== 0) { return NaN}
     var cardRank = this.rank(card);
     var cardSuit = this.suit(card);
 
@@ -58,17 +55,7 @@ var cardReader = {
                 "Hearts",
                 "Diamonds",
                 "Spades",
-                "Clubs"],
-
-  isValid: function(num,low,high) { // Returns--> NaN, true
-      if ((typeof num)!="number") //wrong type
-          return NaN;
-      if (num%1 !== 0) //non-integer
-          return NaN;
-      if (num<low || num>high) //out of range
-          return NaN;
-      return true;
-  }
+                "Clubs"]
 
 };
 
