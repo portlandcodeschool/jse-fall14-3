@@ -48,3 +48,42 @@ var friendsList = [];
   return friendsList;
 }
 
+//Exercise 4b 
+
+//Write another method `people.friendsOfFriendsOf(name)` which returns a string 
+//listing, in alphabetical order, all the names of people within two degrees of 
+//separation from `name`: they've met either `name` or at least one of `name`'s 
+//friends. Your list may include `name` itself but no duplicates: any person 
+//should be listed only once regardless of the number of connections with `name`.
+
+//(_Hint:_ the union of sets includes no duplicates!  Perhaps you could recycle 
+//code from somewhere?)
+
+people.friendsOfFriendsOf = function(name) { //returns a string
+//friendsOfFriendsList will be the array that will sort all of the friends into alphabetical order
+  var friendsList1Deg = {},
+      friendsList2Deg = {},
+      unitedList = {},
+      friendsOfFriendsList = [];
+//first, pull 'name's friends list
+//then, pull 'name's friends of friends, use union to join
+
+  for (var prop in friendsList1Deg) {
+    unitedList[prop] = friendsList1Deg[prop];
+  }
+
+  for (var prop in friendsList2Deg) {
+    if (!(prop in unitedList)) {
+      unitedList[prop] = friendsList2Deg[prop];
+    }
+    if (friendsList2Deg[prop] !== friendsList1Deg[prop]) {
+      unitedList[prop] = (friendsList1Deg[prop] || friendsList2Deg[prop]);
+    }
+  }
+  
+//this will produce the final alphabetical string
+  friendsOfFriendsList.push(Object.keys(unitedList)); //need to push from the new, united object
+  friendsOfFriendsList.sort();
+  friendsOfFriendsList.join(" /n");
+  return friendsOfFriendsList;
+}
