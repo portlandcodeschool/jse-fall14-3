@@ -24,40 +24,43 @@ people.meet = function(nameA,nameB) {
 
   if (this.index.hasOwnProperty(nameA) == false) {
     this.index[nameA] = {
-    	name: nameA, 
-    	friends};
-    this.index[nameA]friends[nameB];
-  	}
+      name: nameA};
+    this.index[nameA].friends = {};
+    this.index[nameA].friends[nameB] = 1;
+    }
   
   if (this.index.hasOwnProperty(nameB) == false) {
     this.index[nameB] = {
-    	name: nameB, 
-    	friends};
-    this.index[nameB]friends[nameA];
-  	}	else {
-  		[nameA]friends[nameB]++; //this incrementer isn't working
-    	[nameB]friends[nameA]++;
-  }
+      name: nameB};
+    this.index[nameB].friends = {};
+    this.index[nameB].friends[nameA] = 1;
+    } else {
+      this.index[nameA].friends[nameB]++; 
+      this.index[nameB].friends[nameA]++;
+  } 
   
-  return [nameA]friends[nameB];
+  return this.index[nameA].friends[nameB];
 }
 
 people.meet("Dan", "Ben");
+
+
+
 
 
 people.haveMet = function(nameA,nameB) { //returns a number or falsish
 	if (this.index.hasOwnProperty('nameA') == false) {
    return 0;
   } else {
-    return this.index[nameA]friends[nameB][timesMet];
+    return this.index[nameA].friends[nameB][timesMet];
   }
 }
 
 people.friendsOf = function(name) { //returns a string
 	//incorporate getOwnPropertyNames
 var friendsList = [];
-  for (var prop in this.index[name]friends) {
-    friendsList.push(prop);
+  for (var prop in this.index[name].friends) {
+    Object.keys(prop);
   }
   friendsList.sort();
   friendsList.join(" /n");
