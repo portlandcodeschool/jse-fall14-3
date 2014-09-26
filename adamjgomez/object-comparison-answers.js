@@ -63,9 +63,9 @@ var similar = function(objA, objB) {
 
 
 
+// NOTES BELOW IGNORE
 
-
-meet (arg2) = people.index[arg1]
+// meet (arg2) = people.index[arg1]
 
 
 
@@ -87,14 +87,14 @@ meet (arg2) = people.index[arg1]
 
 //
 
-who = Dan
-whoElse = Adam
+// who = Dan
+// whoElse = Adam
 
-people.index[who].friends[whichFriend]
-people.index[whoElse].friends[who]
+// people.index[who].friends[whichFriend]
+// people.index[whoElse].friends[who]
 
 
-increment 
+// increment 
 //make sure that these boxes are build for a new person so you can go down that path with out creating an error.
 
 
