@@ -48,16 +48,16 @@ array.pop();
 
 console.log(array.join('a')); //What will this print?
 	Answer: 'a'
-	Actual print out: [see below]
+	Actual print out: 
+	cab
 	-> undefined
-		" a"
-	// This is "acab" because the argument passed is "a" and that is put in front of each item in the array and currently the array only has "c" and "a" in it.
+
 ```
 
 **c)**  Similarly, predict the outcome here:
 ```
 array.length=0;
-	Answer: This will reset the property length to 0 but will leave the 0 and 1 properties with the values 'a' and 'b' respectively.
+	Answer: This will output 0 and reset the property length to 0 but will leave the 0 and 1 properties with the values 'c' and 'b' respectively.
 
 console.log(array.join(array.push(array.push('a')))); // What will this print?
 ```
@@ -66,7 +66,15 @@ console.log(array.join(array.push(array.push('a')))); // What will this print?
 <!-- First it will process the first processed (last written) array.push statement (which results in a 2). Then it will process the next array.push statement which will add '2' as the value of the 3 property. Then it will print out ' 3' as per the "array.join" function that is basically asking it to print out "3" in the whole function so it just adds a space to the beginning of "3" and ends. -->
 
 	Actual: 
+	console.logs 'a21'
 
+<!-- This is because of the following (from solutions file):
+That expression reduces to:
+// console.log(array.join(array.push(1));  //array now contains ['a']
+// console.log(array.join(2));   //array now contains ['a',1]
+// console.log('a21');
+
+-->
 
 ---
 
@@ -87,8 +95,17 @@ It would be best to modify your own code from Homework 2, but if you didn't solv
 **a)**
 Write a function `copy(obj)`, which duplicates an object (not just copying a reference to it).  You only need to duplicate only one level: if `obj` contains another object _inner_, the duplicate may share _inner_ rather than copying it too.
 
+// do a for loop to run through each array item until the end
+// have each item of new array = each item of old array
+
+
 Write another function to compare two objects:
 `equal(objA,objB)` should return true only when `objA` and `objB` have exactly the same properties with the same values.  Note that two empty objects should be considered equal.
+
+// for loop to run through each array item of each one
+// if (objA[i] == objB[i])
+		result = true
+// else result = false;
 
 Write a third function:
 `similar(objA,objB)` should return true only when `objA` and `objB` have exactly the same properties, regardless of their values.
@@ -124,7 +141,7 @@ Finally: even if your functions implement perfectly the definitions above,
 intersection and union are still not symmetric.  That is, `similar(union(A,B),union(B,A))` will always be true, but `equal(union(A,B),union(B,A))` may not be.  Likewise with intersection.  Explain!
 
 _Answer_
-Since union is just evaluating the OR value/quality of the two object (only has to be true in one of the compared items), it is not the same as asking if they are identical.
+Since union is just evaluating the OR value/quality of the two objects (only has to be true in one of the compared items), it is not the same as asking if they are fully identical.
 
 ---
 
@@ -170,3 +187,5 @@ Your list may include `name` itself but no duplicates: any person should be list
 (_Hint:_ the union of sets includes no duplicates!  Perhaps you could recycle code from somewhere?)
 
 
+// when pulling together the full list use the .join function
+// then sort and compare. 
